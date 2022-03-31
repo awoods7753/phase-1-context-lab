@@ -1,5 +1,64 @@
-/* Your Code Here */
+function createEmployeeRecord(employee) {
+    
+    return {
+        firstName: employee[0],
+        familyName: employee[1],
+        title: employee[2],
+        payPerHour: employee[3],
+        timeInEvents: [],
+        timeOutEvents: []
+    }
+}
 
+function createEmployeeRecords(employees) {
+   return employees.map(employee => createEmployeeRecord(employee))
+}
+
+function createTimeInEvent(event) {
+    let [date, hour] = event.split(" ")
+    let eventObj = {
+        type: "TimeIn",
+        hour: parseInt(hour, 10),
+        date
+    }
+    employee.timeInEvents = [...employee.timeInEvents, eventObj]
+
+    this.timeInEvents.push(eventObj)
+    return this
+}
+
+function createTimeOutEvent(event) {
+    let [date, hour] = event.split(" ")
+    let eventObj = {
+        type: "TimeOut",
+        hour: parseInt(hour, 10),
+        date
+    }
+
+    this.timeOutEvents.push(eventObj)
+    return this
+}
+
+function hoursWorkedOnDate(date) {
+    let timeIn = this.timeInEvents.find(event => event.date === date)
+    let timeOut = this.timeOutEvents.find(event => event.date === date)
+
+    return (timeOut.hour - timeIn.hour)/100
+}
+
+function wagesEarnedOnDate(date) {
+    let hours = hoursWorkedOnDate.call(this, date)
+    return this.payPerHour * hours
+}
+
+function calculatePayroll(employeeRecords) {
+    return employeeRecords.map(employee => allWagesFor.call(employee)).reduce((currentValue, total) => currentValue + total)
+}
+
+function findEmployeeByFirstName(employees, firstNameString) {
+    let found = employees.find(emp => emp.firstName === firstNameString)
+    return found
+}
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
